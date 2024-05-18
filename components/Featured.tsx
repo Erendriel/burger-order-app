@@ -2,6 +2,7 @@ import { product } from "@/data";
 import ScrollWrapper from "./ScrollWrapper";
 import Image from "next/image";
 import React from "react";
+import Link from "next/link";
 
 const Featured: React.FC = () => {
   const products = product;
@@ -32,9 +33,11 @@ const Featured: React.FC = () => {
               <span className="text-xl font-bold">
                 ${(item.price / 100).toFixed(2)}
               </span>
-              <button className="bg-red-600 text-white p-2 rounded-md">
-                Add to Cart
-              </button>
+              <Link href={`/product/${item.id}`}>
+                <button className="bg-red-600 text-white p-2 rounded-md">
+                  Add to Cart
+                </button>
+              </Link>
             </div>
           </div>
         ))}
