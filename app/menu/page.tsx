@@ -1,12 +1,21 @@
-import { product } from "@/data";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { Product } from "@/types/types";
 
-const MenuPage = () => {
+const getData = async () =>{
+  const res = await fetch("http://localhost:3000/api/products", {cache:"no-store"})
+  if(!res.ok){
+    throw new Error('Failed');
+  }
+  return res.json()
+}
+
+const MenuPage = async() => {
+  const products:Product = await getData()
   return (
     <div className="flex flex-wrap justify-center gap-4">
-      {product.map((item) => (
+      {products.map((item) => (
         <div className="w-full sm:w-1/2 md:w-1/2 lg:w-1/4 p-4" key={item.id}>
           <Link
             className="block rounded-lg shadow-lg overflow-hidden transform transition duration-300 hover:scale-105 group"
