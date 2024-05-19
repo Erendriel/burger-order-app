@@ -6,5 +6,22 @@ export type Product = {
     price: number;
     calorie?: number;
     slug?: string;
-    options?: { title: string; additionalPrice: number }[];
   }[];
+
+  export type OrderType = {
+    id: string;
+    userEmail: string;
+    price: number;
+    products: CartItemType[];
+    status: string;
+    createdAt: Date;
+    intent_id?: string;
+  }
+
+  export type CartItemType = {
+    id:string;
+    name: string;
+    image?: string;
+    price: number;
+    quantity: number;
+  }
