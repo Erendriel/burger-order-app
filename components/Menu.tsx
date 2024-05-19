@@ -16,7 +16,7 @@ const Menu = () => {
   const [open, setOpen] = useState(false);
 
   // TEMPORARY
-  const user = false;
+  const user = true;
   return (
     <div>
       {/* LONG WAY */}
@@ -37,7 +37,7 @@ const Menu = () => {
           onClick={() => setOpen(false)}
         />
       )} */}
-      
+
       {/* SHORTCUT */}
       <Image
         src={open ? "/close.png" : "/open.png"}
