@@ -16,7 +16,7 @@ const Menu = () => {
   const [open, setOpen] = useState(false);
 
   // TEMPORARY
-  const user = true;
+  const user = false;
   return (
     <div>
       {/* LONG WAY */}
