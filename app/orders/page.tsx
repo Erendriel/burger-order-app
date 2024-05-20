@@ -76,7 +76,7 @@ const OrdersPage = () => {
               <td className="py-6 px-1">{item.price}</td>
               <td className="hidden md:block py-6 px-1">
                 {item.products.map((product) => (
-                  <div key={product.id}>{product.name}</div>
+                  <div key={product.id}>{product.name}({product.quantity})</div>
                 ))}
               </td>
               {session?.user.isAdmin ? (
