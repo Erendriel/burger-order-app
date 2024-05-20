@@ -28,7 +28,7 @@ const Navbar = () => {
           <Image src="/phone.png" alt="" width={20} height={20} />
           <span>123 456 7890</span>
         </div>
-       <UserLinks/>
+        <UserLinks />
         <CartIcon />
       </div>
     </div>

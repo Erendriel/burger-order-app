@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { Product } from "@/types/types";
+import { ProductType } from "@/types/types";
 
 const getData = async () =>{
   const res = await fetch("http://localhost:3000/api/products", {cache:"no-store"})
@@ -12,7 +12,7 @@ const getData = async () =>{
 }
 
 const MenuPage = async() => {
-  const products:Product = await getData()
+  const products:ProductType[] = await getData()
   return (
     <div className="flex flex-wrap justify-center gap-4">
       {products.map((item) => (
