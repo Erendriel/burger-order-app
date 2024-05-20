@@ -3,18 +3,22 @@ import Link from "next/link";
 import React from "react";
 import { ProductType } from "@/types/types";
 
-const getData = async () =>{
+const getData = async () => {
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
-  console.log('API URL:', apiUrl); // Temporary log for debugging
+  console.log('API URL:', apiUrl); // Log the API URL for debugging
 
-  if (!apiUrl) {
-    throw new Error('API URL is not defined');
+  try {
+    const res = await fetch(`${apiUrl}/api/products`, { cache: "no-store" });
+    if (!res.ok) {
+      const errorMessage = `Failed to fetch data: ${res.status} ${res.statusText}`;
+      console.error(errorMessage); // Log the error message
+      throw new Error(errorMessage);
+    }
+    return res.json();
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error; // Re-throw the error after logging it
   }
-  const res = await fetch(`${apiUrl}/api/products`, {cache:"no-store"})
-  if(!res.ok){
-    throw new Error('Failed');
-  }
-  return res.json()
 }
 
 const MenuPage = async() => {
