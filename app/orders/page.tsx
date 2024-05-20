@@ -29,11 +29,11 @@ const OrdersPage = () => {
   const mutation = useMutation({
     mutationFn: ({ id, status }: { id: string; status: string }) => {
       return fetch(`${apiUrl}/api/orders/${id}`, {
-        method:"PUT",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(status),
+        body: JSON.stringify({ status }),
       });
     },
     onSuccess() {
@@ -48,7 +48,8 @@ const OrdersPage = () => {
     const status = input.value;
 
     mutation.mutate({ id, status });
-    toast.success("The order status has been changed!")
+    toast.success("The order status has been changed!");
+    input.value = ""; // Reset the input value
   };
 
   if (isLoading || status === "loading") return "Loading...";
@@ -74,7 +75,9 @@ const OrdersPage = () => {
               </td>
               <td className="py-6 px-1">{item.price}</td>
               <td className="hidden md:block py-6 px-1">
-                {item.products[0].name}
+                {item.products.map((product) => (
+                  <div key={product.id}>{product.name}</div>
+                ))}
               </td>
               {session?.user.isAdmin ? (
                 <td>

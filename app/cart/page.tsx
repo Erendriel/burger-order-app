@@ -27,7 +27,7 @@ const CartPage = () => {
 
   const handleCheckout = async () => {
     if (!session) {
-      router.push("/")
+      router.push("/login")
     } else {
       try {
         const apiUrl = process.env.NEXT_PUBLIC_API_URL;
