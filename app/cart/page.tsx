@@ -11,7 +11,7 @@ const CartPage = () => {
     clearCart
   } = useCartStore()
   const [deliveryCost, setDeliveryCost] = useState(2)
-  const {data:session} = useSession();
+  const { data: session } = useSession();
   const router = useRouter();
 
 
@@ -26,17 +26,18 @@ const CartPage = () => {
   }, [totalPrice])
 
   const handleCheckout = async () => {
-    if(!session) {
+    if (!session) {
       router.push("/")
-    }else{
+    } else {
       try {
-        const res = await fetch("http://localhost:3000/api/orders",{
+        const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+        const res = await fetch(`${apiUrl}/api/orders`, {
           method: "POST",
-          headers:{"Content-Type":"application/json"},
+          headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
-            price:totalPrice,
+            price: totalPrice,
             products,
-            status:"Paid!",
+            status: "Paid!",
             userEmail: session.user.email
           }),
         });

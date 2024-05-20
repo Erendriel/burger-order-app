@@ -2,9 +2,10 @@ import ProductsSuggested from "@/components/ProductsSuggested";
 import { ProductType } from "@/types/types";
 import React from "react";
 import SingleProduct from "@/components/SingleProduct";
+const apiUrl = process.env.NEXT_PUBLIC_API_URL;
 
 const getSingleProductData = async (id: string) => {
-  const res = await fetch(`http://localhost:3000/api/products/${id}`, {
+  const res = await fetch(`${apiUrl}/api/products/${id}`, {
     cache: "no-store",
   });
 
@@ -15,7 +16,7 @@ const getSingleProductData = async (id: string) => {
   return res.json();
 };
 const getAllProductsData = async () => {
-  const res = await fetch(`http://localhost:3000/api/products/`, {
+  const res = await fetch(`${apiUrl}/api/products/`, {
     cache: "no-store",
   });
 
