@@ -25,6 +25,12 @@ const Price = ({ product, quantity, setQuantity }: PriceProps) => {
     }
   }, [quantity, product]);
 
+  
+  useEffect(()=>{
+    useCartStore.persist.rehydrate()
+  },[])
+
+
   const handleCart = () => {
     addToCart({
       id: product.id,
