@@ -5,6 +5,11 @@ import { ProductType } from "@/types/types";
 
 const getData = async () =>{
   const apiUrl = process.env.NEXT_PUBLIC_API_URL;
+  console.log('API URL:', apiUrl); // Temporary log for debugging
+
+  if (!apiUrl) {
+    throw new Error('API URL is not defined');
+  }
   const res = await fetch(`${apiUrl}/api/products`, {cache:"no-store"})
   if(!res.ok){
     throw new Error('Failed');
