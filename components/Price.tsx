@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 interface PriceProps {
   product: ProductType;
   quantity: number;
-  setQuantity: (value: number) => void;
+  setQuantity: (value: number | ((prev: number) => number)) => void;
 }
 
 const Price = ({ product, quantity, setQuantity }: PriceProps) => {
@@ -25,11 +25,9 @@ const Price = ({ product, quantity, setQuantity }: PriceProps) => {
     }
   }, [quantity, product]);
 
-  
-  useEffect(()=>{
-    useCartStore.persist.rehydrate()
-  },[])
-
+  useEffect(() => {
+    useCartStore.persist.rehydrate();
+  }, []);
 
   const handleCart = () => {
     addToCart({
