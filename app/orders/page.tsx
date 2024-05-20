@@ -33,7 +33,7 @@ const OrdersPage = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ status }),
+        body: JSON.stringify(status),
       });
     },
     onSuccess() {
@@ -49,7 +49,7 @@ const OrdersPage = () => {
 
     mutation.mutate({ id, status });
     toast.success("The order status has been changed!");
-    input.value = ""; // Reset the input value
+    input.value = "";
   };
 
   if (isLoading || status === "loading") return "Loading...";
